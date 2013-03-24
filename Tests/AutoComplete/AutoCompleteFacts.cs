@@ -52,7 +52,7 @@ namespace Tests.AutoComplete
         }
 
         [Fact]
-        public void GivenTheQueryJohnAdamWildcard_Search_Returns1Person()
+        public void GivenTheQueryJohnAdamWildcard_Search_Returns3People()
         {
             // Arrange.
             DataToBeSeeded = new List<IEnumerable> { People };
