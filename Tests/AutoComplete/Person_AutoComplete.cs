@@ -11,14 +11,16 @@ namespace Tests.AutoComplete
         public Person_AutoComplete()
         {
             AddMap<Person>(people => from person in people
-                                         select new Result()
-                                                    {
-                                                        Query = new object[]
-                                                                    {
-                                                                        person.FirstName,
-                                                                        person.Surname
-                                                                    }
-                                                    });
+                                     select new Result
+                                                {
+                                                    Query = new object[]
+                                                                {
+                                                                    person.FirstName,
+                                                                    person.Surname
+                                                                },
+                                                    FirstName = person.FirstName,
+                                                    Surname = person.Surname
+                                                });
 
             Index(x => x.Query, FieldIndexing.Analyzed);
         }
@@ -26,6 +28,8 @@ namespace Tests.AutoComplete
         public class Result
         {
             public object[] Query { get; set; }
+            public string FirstName { get; set; }
+            public string Surname { get; set; }
         }
     }
 

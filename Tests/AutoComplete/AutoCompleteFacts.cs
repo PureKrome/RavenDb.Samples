@@ -63,13 +63,18 @@ namespace Tests.AutoComplete
             // Only search for John -AND- Adam*.
             var results = DocumentSession.Query<Person_AutoComplete.Result, Person_AutoComplete>()
                                          .Search(x => x.Query, query,
+                                                 options: SearchOptions.And,
                                                  escapeQueryOptions: EscapeQueryOptions.AllowPostfixWildcard)
-                                         .As<dynamic>()
+                                         .As<Person>()
                                          .ToList();
 
             // Assert.
             Assert.NotNull(results);
             Assert.NotEmpty(results);
+            foreach (var result in results)
+            {
+                Console.WriteLine("Person: " + result);
+            }
             Assert.Equal(3, results.Count);
         }
     }
